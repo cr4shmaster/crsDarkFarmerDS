@@ -1,13 +1,19 @@
-name = "Dark Farmer"
+name = "Dark Farmer TEST"
 description = "Adds Dark Farmers to the game."
 author = "cr4shmaster"
-version = "1.1.4"
+version = "1.2.0"
 forumthread = ""
 api_version = 6
 dont_starve_compatible = true
 reign_of_giants_compatible = true
+shipwrecked_compatible = true
 icon_atlas = "modicon.xml"
 icon = "modicon.tex"
+
+--[[ 
+Notes:
+ - none
+--]]
 
 local crsPosition = {
  {description = "500", data = 500},
