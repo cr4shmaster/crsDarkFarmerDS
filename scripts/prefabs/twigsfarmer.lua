@@ -79,5 +79,5 @@ local function fn(Sim)
  return inst
 end
 
-return Prefab( "common/twigsfarmer", fn, assets, prefabs),
+return Prefab( "common/twigsfarmer", fn, assets),
 		MakePlacer("common/twigsfarmer_placer", "twigsfarmer", "twigsfarmer", "idle")

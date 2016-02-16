@@ -1,4 +1,4 @@
-name = "Dark Farmer TEST"
+name = "Dark Farmer v1.2"
 description = "Adds Dark Farmers to the game."
 author = "cr4shmaster"
 version = "1.2.0"
@@ -9,11 +9,6 @@ reign_of_giants_compatible = true
 shipwrecked_compatible = true
 icon_atlas = "modicon.xml"
 icon = "modicon.tex"
-
---[[ 
-Notes:
- - none
---]]
 
 local crsPosition = {
  {description = "500", data = 500},
