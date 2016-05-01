@@ -4,6 +4,17 @@ local assets = {
 	Asset("ANIM", "anim/reedsfarmer.zip"),
 }
 
+local crsDarkFarmerDS = nil
+if GetModConfigData("crsDarkFarmerTest", "workshop-501860211") == 1 then
+ crsDarkFarmerDS = "workshop-501860211"
+else
+ crsDarkFarmerDS = "crsDarkFarmerDS"
+end
+local crsCollectRadius = GetModConfigData("crsDarkReedFarmerCollectRadius", crsDarkFarmerDS)
+local crsCollectInterval = GetModConfigData("crsDarkFarmerCollectInterval", crsDarkFarmerDS)
+local crsFeedValue = GetModConfigData("crsDarkFarmerFeedValue", crsDarkFarmerDS)
+local crsFoodCount = GetModConfigData("crsDarkReedFarmerFoodCount", crsDarkFarmerDS)
+
 local function crsItemTest(inst, item, slot)
  return item.prefab == "cutreeds" or
  item.prefab == "nightmarefuel"
@@ -43,7 +54,7 @@ local function fn(Sim)
  
  local function crsSearchForReeds(inst)
   if inst.crsFoodStatus > 0 then
-   local crsReeds = FindEntity(inst, crsDarkReedFarmerCollectRadius, function(crsReeds)
+   local crsReeds = FindEntity(inst, crsCollectRadius, function(crsReeds)
     return crsReeds.name == "Reeds" and crsReeds.components.pickable and crsReeds.components.pickable.canbepicked
    end)
    if crsReeds then -- if valid
@@ -57,18 +68,18 @@ local function fn(Sim)
    end)
    if crsHasFood then
     if crsHasFood.components.stackable then
-     if crsHasFood.components.stackable.stacksize >= crsDarkReedFarmerNumFood then
-      crsHasFood.components.stackable:Get(crsDarkReedFarmerNumFood):Remove()
-      inst.crsFoodStatus = crsDarkFarmerFeedValue
+     if crsHasFood.components.stackable.stacksize >= crsFoodCount then
+      crsHasFood.components.stackable:Get(crsFoodCount):Remove()
+      inst.crsFoodStatus = crsFeedValue
      end
     else
      crsHasFood:Remove()
-     inst.crsFoodStatus = crsDarkFarmerFeedValue
+     inst.crsFoodStatus = crsFeedValue
     end
    end
   end
  end
- inst:DoPeriodicTask(crsDarkFarmerCollectInterval, crsSearchForReeds)
+ inst:DoPeriodicTask(crsCollectInterval, crsSearchForReeds)
 
  inst.OnSave = function(inst, data)
   data.crsFoodStatus = inst.crsFoodStatus

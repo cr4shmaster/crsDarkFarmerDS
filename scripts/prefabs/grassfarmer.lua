@@ -4,6 +4,17 @@ local assets = {
 	Asset("ANIM", "anim/grassfarmer.zip"),
 }
 
+local crsDarkFarmerDS = nil
+if GetModConfigData("crsDarkFarmerTest", "workshop-501860211") == 1 then
+ crsDarkFarmerDS = "workshop-501860211"
+else
+ crsDarkFarmerDS = "crsDarkFarmerDS"
+end
+local crsCollectRadius = GetModConfigData("crsDarkGrassFarmerCollectRadius", crsDarkFarmerDS)
+local crsCollectInterval = GetModConfigData("crsDarkFarmerCollectInterval", crsDarkFarmerDS)
+local crsFeedValue = GetModConfigData("crsDarkFarmerFeedValue", crsDarkFarmerDS)
+local crsFoodCount = GetModConfigData("crsDarkGrassFarmerFoodCount", crsDarkFarmerDS)
+
 local function crsItemTest(inst, item, slot)
  return item.prefab == "cutgrass" or
 	item.prefab == "poop" or
@@ -45,10 +56,10 @@ local function fn(Sim)
 
  local function crsSearchForGrass(inst)
   if inst.crsFoodStatus > 0 then
-   local crsPickableGrass = FindEntity(inst, crsDarkGrassFarmerCollectRadius, function(crsPickableGrass)
+   local crsPickableGrass = FindEntity(inst, crsCollectRadius, function(crsPickableGrass)
     return crsPickableGrass.name == "Grass" and crsPickableGrass.components.pickable and crsPickableGrass.components.pickable.canbepicked
    end)
-   local crsFertilizableGrass = FindEntity(inst, crsDarkGrassFarmerCollectRadius, function(crsFertilizableGrass)
+   local crsFertilizableGrass = FindEntity(inst, crsCollectRadius, function(crsFertilizableGrass)
     return crsFertilizableGrass.name == "Grass" and crsFertilizableGrass.components.pickable and crsFertilizableGrass.components.pickable:CanBeFertilized()
    end)
    if crsPickableGrass then
@@ -71,18 +82,18 @@ local function fn(Sim)
    end)
    if crsHasFood then
     if crsHasFood.components.stackable then
-     if crsHasFood.components.stackable.stacksize >= crsDarkGrassFarmerNumFood then
-      crsHasFood.components.stackable:Get(crsDarkGrassFarmerNumFood):Remove()
-      inst.crsFoodStatus = crsDarkFarmerFeedValue
+     if crsHasFood.components.stackable.stacksize >= crsFoodCount then
+      crsHasFood.components.stackable:Get(crsFoodCount):Remove()
+      inst.crsFoodStatus = crsFeedValue
      end
     else
      crsHasFood:Remove()
-     inst.crsFoodStatus = crsDarkFarmerFeedValue
+     inst.crsFoodStatus = crsFeedValue
     end
    end
   end
  end
- inst:DoPeriodicTask(crsDarkFarmerCollectInterval, crsSearchForGrass)
+ inst:DoPeriodicTask(crsCollectInterval, crsSearchForGrass)
 
  inst.OnSave = function(inst, data)
   data.crsFoodStatus = inst.crsFoodStatus

@@ -4,6 +4,17 @@ local assets = {
 	Asset("ANIM", "anim/twigsfarmer.zip"),
 }
 
+local crsDarkFarmerDS = nil
+if GetModConfigData("crsDarkFarmerTest", "workshop-501860211") == 1 then
+ crsDarkFarmerDS = "workshop-501860211"
+else
+ crsDarkFarmerDS = "crsDarkFarmerDS"
+end
+local crsCollectRadius = GetModConfigData("crsDarkTwigFarmerCollectRadius", crsDarkFarmerDS)
+local crsCollectInterval = GetModConfigData("crsDarkFarmerCollectInterval", crsDarkFarmerDS)
+local crsFeedValue = GetModConfigData("crsDarkFarmerFeedValue", crsDarkFarmerDS)
+local crsFoodCount = GetModConfigData("crsDarkTwigFarmerFoodCount", crsDarkFarmerDS)
+
 local function crsItemTest(inst, item, slot)
  return item.prefab == "twigs" or
  item.prefab == "nightmarefuel"
@@ -43,7 +54,7 @@ local function fn(Sim)
  
  local function crsSearchForSapling(inst)
   if inst.crsFoodStatus > 0 then
-   local crsSapling = FindEntity(inst, crsDarkTwigFarmerCollectRadius, function(crsSapling)
+   local crsSapling = FindEntity(inst, crsCollectRadius, function(crsSapling)
     return crsSapling.name == "Sapling" and crsSapling.components.pickable and crsSapling.components.pickable.canbepicked
    end)
    if crsSapling then -- if valid
@@ -57,18 +68,18 @@ local function fn(Sim)
    end)
    if crsHasFood then
     if crsHasFood.components.stackable then
-     if crsHasFood.components.stackable.stacksize >= crsDarkTwigFarmerNumFood then
-      crsHasFood.components.stackable:Get(crsDarkTwigFarmerNumFood):Remove()
-      inst.crsFoodStatus = crsDarkFarmerFeedValue
+     if crsHasFood.components.stackable.stacksize >= crsFoodCount then
+      crsHasFood.components.stackable:Get(crsFoodCount):Remove()
+      inst.crsFoodStatus = crsFeedValue
      end
     else
      crsHasFood:Remove()
-     inst.crsFoodStatus = crsDarkFarmerFeedValue
+     inst.crsFoodStatus = crsFeedValue
     end
    end
   end
  end
- inst:DoPeriodicTask(crsDarkFarmerCollectInterval, crsSearchForSapling)
+ inst:DoPeriodicTask(crsCollectInterval, crsSearchForSapling)
 
  inst.OnSave = function(inst, data)
   data.crsFoodStatus = inst.crsFoodStatus

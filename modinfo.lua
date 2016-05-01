@@ -1,7 +1,7 @@
 name = "Dark Farmer v1.2"
 description = "Adds Dark Farmers to the game."
 author = "cr4shmaster"
-version = "1.2.0"
+version = "1.2.1"
 forumthread = ""
 api_version = 6
 dont_starve_compatible = true
@@ -165,25 +165,25 @@ configuration_options = {
 		default = 100,
 	},
  {
-		name = "crsDarkBerryFarmerNumFood",
+		name = "crsDarkBerryFarmerFoodCount",
 		label = "DBF Food Used",
 		options = crsCount,
 		default = 1,
 	},
  {
-		name = "crsDarkGrassFarmerNumFood",
+		name = "crsDarkGrassFarmerFoodCount",
 		label = "DGF Food Used",
 		options = crsCount,
 		default = 1,
 	},
  {
-		name = "crsDarkReedFarmerNumFood",
+		name = "crsDarkReedFarmerFoodCount",
 		label = "DRF Food Used",
 		options = crsCount,
 		default = 1,
 	},
  {
-		name = "crsDarkTwigFarmerNumFood",
+		name = "crsDarkTwigFarmerFoodCount",
 		label = "DTF Food Used",
 		options = crsCount,
 		default = 1,
@@ -200,4 +200,12 @@ configuration_options = {
 		options = crsPosition,
 		default = -100,
 	},
+ {
+  name = "crsDarkFarmerTest",
+  label = "Installed",
+  options = {
+   {description = "Yes", data = 1},
+  },
+  default = 1,
+ },
 }

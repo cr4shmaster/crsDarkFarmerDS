@@ -49,19 +49,7 @@ STRINGS.NAMES.REEDSFARMER = "Dark Reed-Farmer"
 STRINGS.RECIPE_DESC.REEDSFARMER = crsRecipeDesc
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.REEDSFARMER = crsInspectDesc
 
-local crsSwEnabled = GLOBAL.IsDLCEnabled(GLOBAL.CAPY_DLC)
-
--- get mod settings
-GLOBAL.crsDarkBerryFarmerCollectRadius = GetModConfigData("crsDarkBerryFarmerCollectRadius")
-GLOBAL.crsDarkGrassFarmerCollectRadius = GetModConfigData("crsDarkGrassFarmerCollectRadius")
-GLOBAL.crsDarkReedFarmerCollectRadius = GetModConfigData("crsDarkReedFarmerCollectRadius")
-GLOBAL.crsDarkTwigFarmerCollectRadius = GetModConfigData("crsDarkTwigFarmerCollectRadius")
-GLOBAL.crsDarkFarmerCollectInterval = GetModConfigData("crsDarkFarmerCollectInterval")
-GLOBAL.crsDarkFarmerFeedValue = GetModConfigData("crsDarkFarmerFeedValue")
-GLOBAL.crsDarkBerryFarmerNumFood = GetModConfigData("crsDarkBerryFarmerNumFood")
-GLOBAL.crsDarkGrassFarmerNumFood = GetModConfigData("crsDarkBerryFarmerNumFood")
-GLOBAL.crsDarkReedFarmerNumFood = GetModConfigData("crsDarkBerryFarmerNumFood")
-GLOBAL.crsDarkTwigFarmerNumFood = GetModConfigData("crsDarkBerryFarmerNumFood")
+local crsShipwreckedEnabled = GLOBAL.IsDLCEnabled(GLOBAL.CAPY_DLC)
 
 -- add recipes
 local crsDarkMote = "images/inventoryimages/darkmote.xml"
@@ -74,7 +62,7 @@ crsDarkReedFarmerRecipeDarkMotes.atlas = crsDarkMote
 local crsDarkTwigFarmerRecipeDarkMotes = Ingredient("darkmote", GetModConfigData("crsDarkTwigFarmerRecipeDarkMotes"))
 crsDarkTwigFarmerRecipeDarkMotes.atlas = crsDarkMote
 -- berriesfarmer
-if crsSwEnabled then
+if crsShipwreckedEnabled then
  local berriesfarmer = Recipe("berriesfarmer", {
   crsDarkBerryFarmerRecipeDarkMotes,
  }, RECIPETABS.ANCIENT, TECH.SCIENCE_ONE, GLOBAL.RECIPE_GAME_TYPE.COMMON, "berriesfarmer_placer")

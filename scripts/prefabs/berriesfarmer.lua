@@ -4,6 +4,17 @@ local assets = {
 	Asset("ANIM", "anim/berriesfarmer.zip"),
 }
 
+local crsDarkFarmerDS = nil
+if GetModConfigData("crsDarkFarmerTest", "workshop-501860211") == 1 then
+ crsDarkFarmerDS = "workshop-501860211"
+else
+ crsDarkFarmerDS = "crsDarkFarmerDS"
+end
+local crsCollectRadius = GetModConfigData("crsDarkBerryFarmerCollectRadius", crsDarkFarmerDS)
+local crsCollectInterval = GetModConfigData("crsDarkFarmerCollectInterval", crsDarkFarmerDS)
+local crsFeedValue = GetModConfigData("crsDarkFarmerFeedValue", crsDarkFarmerDS)
+local crsFoodCount = GetModConfigData("crsDarkBerryFarmerFoodCount", crsDarkFarmerDS)
+
 local function crsItemTest(inst, item, slot)
  return item.prefab == "berries" or
 	item.prefab == "poop" or
@@ -47,10 +58,10 @@ local function fn(Sim)
 
  local function crsSearchForBush(inst)
   if inst.crsFoodStatus > 0 then
-   local crsPickableBush = FindEntity(inst, crsDarkBerryFarmerCollectRadius, function(crsPickableBush)
+   local crsPickableBush = FindEntity(inst, crsCollectRadius, function(crsPickableBush)
     return crsPickableBush.name == "Berry Bush" and crsPickableBush.components.pickable and crsPickableBush.components.pickable.canbepicked
    end)
-   local crsFertilizableBush = FindEntity(inst, crsDarkBerryFarmerCollectRadius, function(crsFertilizableBush)
+   local crsFertilizableBush = FindEntity(inst, crsCollectRadius, function(crsFertilizableBush)
     return crsFertilizableBush.name == "Berry Bush" and crsFertilizableBush.components.pickable and crsFertilizableBush.components.pickable:CanBeFertilized()
    end)
    if crsPickableBush then
@@ -73,18 +84,18 @@ local function fn(Sim)
    end)
    if crsHasFood then
     if crsHasFood.components.stackable then
-     if crsHasFood.components.stackable.stacksize >= crsDarkBerryFarmerNumFood then
-      crsHasFood.components.stackable:Get(crsDarkBerryFarmerNumFood):Remove()
-      inst.crsFoodStatus = crsDarkFarmerFeedValue
+     if crsHasFood.components.stackable.stacksize >= crsFoodCount then
+      crsHasFood.components.stackable:Get(crsFoodCount):Remove()
+      inst.crsFoodStatus = crsFeedValue
      end
     else
      crsHasFood:Remove()
-     inst.crsFoodStatus = crsDarkFarmerFeedValue
+     inst.crsFoodStatus = crsFeedValue
     end
    end
   end
  end
- inst:DoPeriodicTask(crsDarkFarmerCollectInterval, crsSearchForBush)
+ inst:DoPeriodicTask(crsCollectInterval, crsSearchForBush)
 
  inst.OnSave = function(inst, data)
   data.crsFoodStatus = inst.crsFoodStatus
