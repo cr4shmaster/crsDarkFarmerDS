@@ -49,6 +49,8 @@ STRINGS.NAMES.REEDSFARMER = "Dark Reed-Farmer"
 STRINGS.RECIPE_DESC.REEDSFARMER = crsRecipeDesc
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.REEDSFARMER = crsInspectDesc
 
+local crsSwEnabled = GLOBAL.IsDLCEnabled(GLOBAL.CAPY_DLC)
+
 -- get mod settings
 GLOBAL.crsDarkBerryFarmerCollectRadius = GetModConfigData("crsDarkBerryFarmerCollectRadius")
 GLOBAL.crsDarkGrassFarmerCollectRadius = GetModConfigData("crsDarkGrassFarmerCollectRadius")
@@ -72,26 +74,48 @@ crsDarkReedFarmerRecipeDarkMotes.atlas = crsDarkMote
 local crsDarkTwigFarmerRecipeDarkMotes = Ingredient("darkmote", GetModConfigData("crsDarkTwigFarmerRecipeDarkMotes"))
 crsDarkTwigFarmerRecipeDarkMotes.atlas = crsDarkMote
 -- berriesfarmer
-local berriesfarmer = Recipe("berriesfarmer", {
- crsDarkBerryFarmerRecipeDarkMotes,
-}, RECIPETABS.ANCIENT, TECH.SCIENCE_ONE, "berriesfarmer_placer")
-berriesfarmer.atlas = "images/inventoryimages/berriesfarmer.xml"
--- grassfarmer
-local grassfarmer = Recipe("grassfarmer", {
- crsDarkGrassFarmerRecipeDarkMotes,
-}, RECIPETABS.ANCIENT, TECH.SCIENCE_ONE, "grassfarmer_placer")
-grassfarmer.atlas = "images/inventoryimages/grassfarmer.xml"
--- reedsfarmer
-local reedsfarmer = Recipe("reedsfarmer", {
- crsDarkReedFarmerRecipeDarkMotes,
-}, RECIPETABS.ANCIENT, TECH.SCIENCE_ONE, "reedsfarmer_placer")
-reedsfarmer.atlas = "images/inventoryimages/reedsfarmer.xml"
--- twigsfarmer
-local twigsfarmer = Recipe("twigsfarmer", {
- crsDarkTwigFarmerRecipeDarkMotes,
-}, RECIPETABS.ANCIENT, TECH.SCIENCE_ONE, "twigsfarmer_placer")
-twigsfarmer.atlas = "images/inventoryimages/twigsfarmer.xml"
-
+if crsSwEnabled then
+ local berriesfarmer = Recipe("berriesfarmer", {
+  crsDarkBerryFarmerRecipeDarkMotes,
+ }, RECIPETABS.ANCIENT, TECH.SCIENCE_ONE, GLOBAL.RECIPE_GAME_TYPE.COMMON, "berriesfarmer_placer")
+ berriesfarmer.atlas = "images/inventoryimages/berriesfarmer.xml"
+ -- grassfarmer
+ local grassfarmer = Recipe("grassfarmer", {
+  crsDarkGrassFarmerRecipeDarkMotes,
+ }, RECIPETABS.ANCIENT, TECH.SCIENCE_ONE, GLOBAL.RECIPE_GAME_TYPE.COMMON, "grassfarmer_placer")
+ grassfarmer.atlas = "images/inventoryimages/grassfarmer.xml"
+ -- reedsfarmer
+ local reedsfarmer = Recipe("reedsfarmer", {
+  crsDarkReedFarmerRecipeDarkMotes,
+ }, RECIPETABS.ANCIENT, TECH.SCIENCE_ONE, GLOBAL.RECIPE_GAME_TYPE.COMMON, "reedsfarmer_placer")
+ reedsfarmer.atlas = "images/inventoryimages/reedsfarmer.xml"
+ -- twigsfarmer
+ local twigsfarmer = Recipe("twigsfarmer", {
+  crsDarkTwigFarmerRecipeDarkMotes,
+ }, RECIPETABS.ANCIENT, TECH.SCIENCE_ONE, GLOBAL.RECIPE_GAME_TYPE.COMMON, "twigsfarmer_placer")
+ twigsfarmer.atlas = "images/inventoryimages/twigsfarmer.xml"
+else
+ local berriesfarmer = Recipe("berriesfarmer", {
+  crsDarkBerryFarmerRecipeDarkMotes,
+ }, RECIPETABS.ANCIENT, TECH.SCIENCE_ONE, "berriesfarmer_placer")
+ berriesfarmer.atlas = "images/inventoryimages/berriesfarmer.xml"
+ -- grassfarmer
+ local grassfarmer = Recipe("grassfarmer", {
+  crsDarkGrassFarmerRecipeDarkMotes,
+ }, RECIPETABS.ANCIENT, TECH.SCIENCE_ONE, "grassfarmer_placer")
+ grassfarmer.atlas = "images/inventoryimages/grassfarmer.xml"
+ -- reedsfarmer
+ local reedsfarmer = Recipe("reedsfarmer", {
+  crsDarkReedFarmerRecipeDarkMotes,
+ }, RECIPETABS.ANCIENT, TECH.SCIENCE_ONE, "reedsfarmer_placer")
+ reedsfarmer.atlas = "images/inventoryimages/reedsfarmer.xml"
+ -- twigsfarmer
+ local twigsfarmer = Recipe("twigsfarmer", {
+  crsDarkTwigFarmerRecipeDarkMotes,
+ }, RECIPETABS.ANCIENT, TECH.SCIENCE_ONE, "twigsfarmer_placer")
+ twigsfarmer.atlas = "images/inventoryimages/twigsfarmer.xml"
+end
+ 
 -- add tint
 local function crsImageTintUpdate(self, num, atlas, bgim, owner, container)
 	if container.widgetbgimagetint then

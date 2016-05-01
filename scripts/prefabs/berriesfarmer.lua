@@ -25,6 +25,9 @@ local function fn(Sim)
  inst.AnimState:PlayAnimation("idle")
  
  inst.entity:AddSoundEmitter()
+ 
+ inst.entity:AddDynamicShadow()
+ inst.DynamicShadow:SetSize(10,5)
 
  inst:AddTag("structure")
  inst:AddTag("chest")

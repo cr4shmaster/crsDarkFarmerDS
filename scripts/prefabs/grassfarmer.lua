@@ -26,6 +26,9 @@ local function fn(Sim)
  
  inst.entity:AddSoundEmitter()
  
+ inst.entity:AddDynamicShadow()
+ inst.DynamicShadow:SetSize(10,5)
+ 
  inst:AddTag("structure")
  inst:AddTag("chest")
 
