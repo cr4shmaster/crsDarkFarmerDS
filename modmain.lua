@@ -5,6 +5,13 @@ PrefabFiles = {
 	"reedsfarmer",
 }
 
+local crsFarmers = {
+    "Grass",
+    "Twig",
+    "Berry",
+    "Reed",
+}
+
 Assets = {
 	Asset("ATLAS", "images/inventoryimages/grassfarmer.xml" ),
 	Asset("IMAGE", "images/inventoryimages/grassfarmer.tex" ),
@@ -22,8 +29,8 @@ Assets = {
 	Asset("IMAGE", "images/inventoryimages/yellowcontainer.tex" ),
 	Asset("ATLAS", "images/inventoryimages/orangecontainer.xml" ),
 	Asset("IMAGE", "images/inventoryimages/orangecontainer.tex" ),
- Asset("SOUND", "sound/sanity.fsb"),
- Asset("SOUND", "sound/wilson.fsb"),
+    Asset("SOUND", "sound/sanity.fsb"),
+    Asset("SOUND", "sound/wilson.fsb"),
 }
 
 STRINGS = GLOBAL.STRINGS

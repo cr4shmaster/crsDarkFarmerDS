@@ -1,7 +1,9 @@
+-- http://steamcommunity.com/sharedfiles/filedetails/?id=501860211
+
 name = "Dark Farmer v1.2"
 description = "Adds Dark Farmers to the game."
 author = "cr4shmaster"
-version = "1.2.1"
+version = "1.2.1.1"
 forumthread = ""
 api_version = 6
 dont_starve_compatible = true
