@@ -4,12 +4,9 @@ local assets = {
 	Asset("ANIM", "anim/twigsfarmer.zip"),
 }
 
-local crsDarkFarmerDS = nil
-if GetModConfigData("crsDarkFarmerTest", "workshop-501860211") == 1 then
- crsDarkFarmerDS = "workshop-501860211"
-else
- crsDarkFarmerDS = "crsDarkFarmerDS"
-end
+crsDarkFarmerDS = "workshop-501860211"
+-- crsDarkFarmerDS = "crsDarkFarmerDS"
+
 local crsCollectRadius = GetModConfigData("crsDarkTwigFarmerCollectRadius", crsDarkFarmerDS)
 local crsCollectInterval = GetModConfigData("crsDarkFarmerCollectInterval", crsDarkFarmerDS)
 local crsFeedValue = GetModConfigData("crsDarkFarmerFeedValue", crsDarkFarmerDS)

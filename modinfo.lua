@@ -1,9 +1,9 @@
--- http://steamcommunity.com/sharedfiles/filedetails/?id=501860211
+-- More information here: https://sites.google.com/view/cr4shmaster/dark-farmer-ds-dst
 
-name = "Dark Farmer v1.2"
+name = "Dark Farmer v1.2.1.2"
 description = "Adds Dark Farmers to the game."
 author = "cr4shmaster"
-version = "1.2.1.1"
+version = "1.2.1.2"
 forumthread = ""
 api_version = 6
 dont_starve_compatible = true
@@ -106,108 +106,100 @@ local crsValue = {
 }
 
 configuration_options = {
- {
+ 	{
 		name = "crsDarkBerryFarmerRecipeDarkMotes",
 		label = "DBF Dark Motes",
 		options = crsDarkMotes,
 		default = 350,
 	},
- {
+ 	{
 		name = "crsDarkGrassFarmerRecipeDarkMotes",
 		label = "DGF Dark Motes",
 		options = crsDarkMotes,
 		default = 350,
 	},
- {
+ 	{
 		name = "crsDarkReedFarmerRecipeDarkMotes",
 		label = "DRF Dark Motes",
 		options = crsDarkMotes,
 		default = 100,
 	},
- {
+ 	{
 		name = "crsDarkTwigFarmerRecipeDarkMotes",
 		label = "DTF Dark Motes",
 		options = crsDarkMotes,
 		default = 350,
 	},
- {
+ 	{
 		name = "crsDarkBerryFarmerCollectRadius",
 		label = "DBF Collect Radius",
 		options = crsRadius,
 		default = 10,
 	},
- {
+ 	{
 		name = "crsDarkGrassFarmerCollectRadius",
 		label = "DGF Collect Radius",
 		options = crsRadius,
 		default = 10,
 	},
- {
+ 	{
 		name = "crsDarkReedFarmerCollectRadius",
 		label = "DRF Collect Radius",
 		options = crsRadius,
 		default = 10,
 	},
- {
+ 	{
 		name = "crsDarkTwigFarmerCollectRadius",
 		label = "DTF Collect Radius",
 		options = crsRadius,
 		default = 10,
 	},
- {
+ 	{
 		name = "crsDarkFarmerCollectInterval",
 		label = "Collect Interval",
 		options = crsCount,
 		default = 5,
 	},
- {
+ 	{
 		name = "crsDarkFarmerFeedValue",
 		label = "Food Value",
 		options = crsValue,
 		default = 100,
 	},
- {
+ 	{
 		name = "crsDarkBerryFarmerFoodCount",
 		label = "DBF Food Used",
 		options = crsCount,
 		default = 1,
 	},
- {
+ 	{
 		name = "crsDarkGrassFarmerFoodCount",
 		label = "DGF Food Used",
 		options = crsCount,
 		default = 1,
 	},
- {
+ 	{
 		name = "crsDarkReedFarmerFoodCount",
 		label = "DRF Food Used",
 		options = crsCount,
 		default = 1,
 	},
- {
+ 	{
 		name = "crsDarkTwigFarmerFoodCount",
 		label = "DTF Food Used",
 		options = crsCount,
 		default = 1,
 	},
- {
+ 	{
 		name = "crsHorizontalPosition",
 		label = "UI x Position",
 		options = crsPosition,
 		default = -300,
 	},
- {
+ 	{
 		name = "crsVerticalPosition",
 		label = "UI y Position",
 		options = crsPosition,
 		default = -100,
 	},
- {
-  name = "crsDarkFarmerTest",
-  label = "Installed",
-  options = {
-   {description = "Yes", data = 1},
-  },
-  default = 1,
- },
 }
